@@ -7,40 +7,53 @@
 // Because nums[0] + nums[1] = 2 + 7 = 9,
 // return [0, 1].
 
-const map = {}
 
 const twoSum = (numbers, target) => {
   // input: array of numbers, target
   // output: an array of indices of the two numbers that sum to the target
 
-  const result = []
+  // Create an object to store the elements of the input array and their indices
+  const map = {}
 
   // iterate through the numbers array
-    // Find the difference between the current number and the target
-}
-
-const twoSum = (numbers, target) => {
-  // input: array of numbers, target
-  // output: an array of indices of the two numbers that sum to the target
-
-  const result = []
-  let sum
-  // iterate through the input array
   for (let i = 0; i < numbers.length; i++) {
-    // for each element, calculate all possible sums
-    for (let j = i+1; j < numbers.length; j++) {
-      sum = numbers[i] + numbers[j]
-      // if the sum is equal to the target
-      if (sum === target) {
-        // store the indices
-        result.push(i, j)
-      }
+    // Find the difference between the current element and the target
+    const diff = target - numbers[i]
+    const n = map[diff]
+    // Check if the index of the difference already exists in the map object
+    if (n !== undefined) {
+      // return the value and current index
+      return [n, i]
+    } else {
+      // store the current element and it's index in the map object
+      map[numbers[i]] = i
     }
   }
-  return result
 }
+
+// O(n^2)
+// const twoSum = (numbers, target) => {
+//   // input: array of numbers, target
+//   // output: an array of indices of the two numbers that sum to the target
+
+//   const result = []
+//   let sum
+//   // iterate through the input array
+//   for (let i = 0; i < numbers.length; i++) {
+//     // for each element, calculate all possible sums
+//     for (let j = i+1; j < numbers.length; j++) {
+//       sum = numbers[i] + numbers[j]
+//       // if the sum is equal to the target
+//       if (sum === target) {
+//         // store the indices
+//         result.push(i, j)
+//       }
+//     }
+//   }
+//   return result
+// }
 
 const input = [2, 7, 11, 15]
 const target = 17
 
-console.log(twoSums(input, target))
+console.log(twoSum(input, target))
